@@ -1,0 +1,25 @@
+.products {
+  padding: 1rem;
+
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .product-card {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      width: 200px;
+      img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  .error {
+    color: red;
+    margin: 1rem 0;
+  }
+}

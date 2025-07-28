@@ -1,0 +1,69 @@
+<div class="container mx-auto px-4 py-6">
+  <h2 class="text-2xl font-bold mb-4">Nos produits</h2>
+
+  <!-- Barre de recherche -->
+  <div class="flex items-center gap-2 mb-6">
+    <input
+      type="text"
+      [(ngModel)]="keyword"
+      (keyup.enter)="onSearch()"
+      placeholder="Rechercher un produit"
+      class="border rounded px-3 py-2 w-full max-w-md"
+    />
+    <button (click)="onSearch()" class="bg-blue-600 text-white px-4 py-2 rounded">Rechercher</button>
+  </div>
+
+  <!-- Formulaire ajout/modif -->
+  <div class="mb-8">
+    <h3 class="text-lg font-semibold mb-2">Ajouter un produit</h3>
+    <div class="grid grid-cols-2 md:grid-cols-6 gap-2">
+      <input class="border px-2 py-1" placeholder="Nom" [(ngModel)]="newProduct.name" />
+      <input class="border px-2 py-1" placeholder="Description" [(ngModel)]="newProduct.description" />
+      <input class="border px-2 py-1" placeholder="Catégorie" [(ngModel)]="newProduct.category" />
+      <input class="border px-2 py-1" placeholder="Prix" type="number" [(ngModel)]="newProduct.price" />
+      <input class="border px-2 py-1" placeholder="Quantité" type="number" [(ngModel)]="newProduct.quantity" />
+      <input class="border px-2 py-1" placeholder="URL image" [(ngModel)]="newProduct.image" />
+    </div>
+    <div class="mt-2 flex gap-2">
+      <button (click)="createOrUpdateProduct()" class="bg-green-600 text-white px-4 py-1 rounded">
+        {{ newProduct.id ? 'Modifier' : 'Créer' }}
+      </button>
+      <button (click)="cancelEdit()" class="bg-gray-400 text-white px-4 py-1 rounded">Annuler</button>
+    </div>
+  </div>
+
+  <!-- Message erreur -->
+  <div *ngIf="error" class="text-red-600 font-semibold mb-4">{{ error }}</div>
+
+  <!-- Liste produits -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div *ngFor="let product of products" class="border rounded p-4 shadow">
+      <img *ngIf="product.image" [src]="product.image" alt="{{ product.name }}" class="h-48 object-cover mx-auto mb-2" />
+
+      <h3 class="text-lg font-bold">{{ product.name }}</h3>
+      <p class="text-sm text-gray-600 mb-1">{{ product.description }}</p>
+      <p class="text-blue-600 font-semibold">{{ product.price }} €</p>
+      <p class="text-gray-500 text-sm mb-2">Stock : {{ product.quantity }}</p>
+
+      <!-- Choix de quantité -->
+      <input
+        type="number"
+        [(ngModel)]="quantities[product.id]"
+        [min]="1"
+        [max]="product.quantity"
+        placeholder="Quantité"
+        class="border w-full px-2 py-1 mb-2"
+      />
+
+      <!-- Actions -->
+      <div class="flex flex-wrap gap-2">
+        <button (click)="addToCart(product.id)" class="bg-blue-500 text-white px-2 py-1 rounded text-sm">🛒 Ajouter</button>
+        <button (click)="removeFromCart(product.id)" class="bg-red-500 text-white px-2 py-1 rounded text-sm">❌ Panier</button>
+        <button (click)="addToWishlist(product.id)" class="bg-pink-500 text-white px-2 py-1 rounded text-sm">❤️ Wishlist</button>
+        <button (click)="removeFromWishlist(product.id)" class="bg-red-400 text-white px-2 py-1 rounded text-sm">❌ Wishlist</button>
+        <button (click)="editProduct(product)" class="bg-yellow-500 text-white px-2 py-1 rounded text-sm">✏️ Modifier</button>
+        <button (click)="deleteProduct(product.id)" class="bg-black text-white px-2 py-1 rounded text-sm">🗑️ Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>

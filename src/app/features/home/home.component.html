@@ -1,0 +1,67 @@
+<div class="flex min-h-screen bg-gray-100">
+  <!-- Sidebar -->
+  <aside class="w-16 md:w-20 bg-white border-r shadow flex flex-col items-center py-4">
+    <img src="assets/logo-sncf.png" alt="Logo" class="w-10 h-10 mb-6" />
+    <nav class="flex flex-col gap-6 text-gray-500">
+      <a routerLink="/products" title="Produits"><i class="fas fa-home text-xl"></i></a>
+      <a routerLink="/wishlist" title="Wishlist"><i class="fas fa-heart text-xl"></i></a>
+      <a routerLink="/cart" title="Panier"><i class="fas fa-shopping-cart text-xl"></i></a>
+      <a routerLink="/contact" title="Contact"><i class="fas fa-envelope text-xl"></i></a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <div class="flex-1 flex flex-col">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-200 to-blue-100 p-6 flex justify-between items-center">
+      <div>
+        <h1 class="text-3xl font-bold text-blue-900">Alten Ecommerce</h1>
+        <p class="text-sm text-blue-800">Mettre les bons produits sur les bons rails.</p>
+      </div>
+      <div class="flex items-center gap-4">
+        <span *ngIf="isLoggedIn" class="text-sm">{{ currentUser?.emailAddress }}</span>
+        <button *ngIf="isLoggedIn" (click)="logout()" class="text-sm text-red-600">Se déconnecter</button>
+        <a *ngIf="!isLoggedIn" routerLink="/login" class="text-sm text-blue-600">Connexion / Inscription</a>
+      </div>
+    </header>
+
+    <!-- Search -->
+    <div class="flex justify-center p-6">
+      <input
+        type="text"
+        [(ngModel)]="keyword"
+        (keyup.enter)="onSearch()"
+        placeholder="🔍 Rechercher un produit"
+        class="rounded px-5 py-2 w-full max-w-2xl border border-gray-300 shadow-sm"
+      />
+    </div>
+
+    <!-- Produits -->
+    <section class="p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold text-blue-900">Les plus populaires</h2>
+        <a routerLink="/products" class="bg-blue-500 text-white text-sm px-4 py-2 rounded shadow">Voir tous les produits</a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div *ngFor="let product of products" class="bg-white rounded shadow p-4">
+          <img *ngIf="product.image" [src]="product.image" class="w-full h-40 object-cover rounded mb-2" />
+          <h3 class="text-lg font-bold text-blue-800">{{ product.name }}</h3>
+          <p class="text-gray-600 text-sm">{{ product.description }}</p>
+          <p class="text-blue-600 font-semibold">{{ product.price }} €</p>
+          <p class="text-xs text-gray-400 mb-2">Stock : {{ product.quantity }}</p>
+
+          <div class="flex gap-2 mb-2">
+            <button (click)="addToCart(product.id)" class="bg-green-500 text-white text-sm px-2 py-1 rounded">➕</button>
+            <button (click)="addToWishlist(product.id)" class="bg-pink-500 text-white text-sm px-2 py-1 rounded">❤️</button>
+          </div>
+
+          <div *ngIf="isAdmin" class="flex gap-2">
+            <button (click)="editProduct(product)" class="bg-yellow-500 text-white text-sm px-2 py-1 rounded">✏️</button>
+            <button (click)="deleteProduct(product.id)" class="bg-red-600 text-white text-sm px-2 py-1 rounded">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+.navbar {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #f4f4f4;
+}
+
+.cart-link {
+  position: relative;
+}
+
+.badge {
+  background-color: red;
+  color: rgb(39, 1, 1);
+  border-radius: 50%;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+  position: absolute;
+  top: -0.4rem;
+  right: -0.6rem;
+}

@@ -1,0 +1,188 @@
+:host {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  width: 60px;
+  background-color: #fff;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.sidebar-icon {
+  width: 30px;
+  height: 30px;
+  margin: 1rem 0;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.sidebar-icon:hover {
+  opacity: 1;
+}
+
+/* ===== Main Content ===== */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Header (topbar) ===== */
+.header {
+  background: linear-gradient(to right, #cfe5ff, #e7f1fd);
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #003366;
+}
+
+.header p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.3rem;
+}
+
+/* ===== Profile (top right) ===== */
+.profile {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profile-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background-color: #ccc;
+}
+
+.profile-name {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* ===== Search Bar ===== */
+.search-bar {
+  margin: 1rem auto;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.75rem 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 9999px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* ===== Section Title ===== */
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 1.5rem 2rem 0.5rem;
+  color: #002f6c;
+}
+
+/* ===== Product Cards Grid ===== */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+}
+
+/* ===== Product Card ===== */
+.product-card {
+  background: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  padding: 1rem;
+  transition: box-shadow 0.2s;
+}
+
+.product-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #002f6c;
+  margin-bottom: 0.3rem;
+}
+
+.product-card p {
+  font-size: 0.85rem;
+  color: #444;
+  margin-bottom: 0.3rem;
+}
+
+.product-card .price {
+  color: #0078d4;
+  font-weight: 600;
+}
+
+.product-card .stock {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+/* ===== Product Buttons ===== */
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.card-actions button {
+  font-size: 0.75rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.375rem;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-cart {
+  background-color: #007bff;
+}
+
+.btn-wishlist {
+  background-color: #e83e8c;
+}
+
+.btn-edit {
+  background-color: #ffc107;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+}
