@@ -1,1 +1,10 @@
-<p>wishlist works!</p>
+<h2>Ma wishlist</h2>
+
+<div *ngIf="wishlist.length === 0">
+  <p>Votre wishlist est vide.</p>
+</div>
+
+<div *ngFor="let item of wishlist" class="wishlist-item">
+  <p>Produit ID : {{ item.productID }}</p>
+  <button (click)="remove(item.productID)">❌ Retirer</button>
+</div>

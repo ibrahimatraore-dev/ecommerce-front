@@ -1,9 +1,15 @@
-<nav class="navbar">
-  <a routerLink="/products">Produits</a>
-  <a routerLink="/wishlist">Wishlist</a>
-  <a routerLink="/cart">
-    Panier
-    <span class="badge" *ngIf="cartCount > 0">{{ cartCount }}</span>
-  </a>
-  <a routerLink="/contact">Contact</a>
+<nav class="sidebar">
+  <ul>
+    <li><a routerLink="/">🏠 Accueil</a></li>
+    <li><a routerLink="/products">🛍️ Produits</a></li>
+    <li><a routerLink="/cart">🛒 Panier</a></li>
+    <li><a routerLink="/wishlist">💖 Wishlist</a></li>
+    <li><a routerLink="/contact">📨 Contact</a></li>
+    <li *ngIf="isAdmin()"><a routerLink="/admin">⚙️ Admin (TODO)</a></li>
+    <li *ngIf="auth.isLoggedIn(); else loginLink"><a (click)="logout()">🚪 Déconnexion</a></li>
+    <ng-template #loginLink>
+      <li><a routerLink="/login">🔐 Connexion</a></li>
+      <li><a routerLink="/register">📝 Inscription</a></li>
+    </ng-template>
+  </ul>
 </nav>

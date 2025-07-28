@@ -1,47 +1,33 @@
-
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/users/user.service';
-import { UserRegisterDTO } from 'src/app/core/models/users/user-register.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
   standalone: false,
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  templateUrl: './users.component.html'
 })
 export class UsersComponent {
-  form: FormGroup;
+  registerForm: FormGroup;
   success = false;
-  error = '';
 
-  constructor(
-    private fb: FormBuilder,
-    private userService: UserService,
-    private router: Router
-  ) {
-    this.form = this.fb.group({
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
+    this.registerForm = this.fb.group({
+      emailAddress: ['', [Validators.required, Validators.email]],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      emailAddress: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', Validators.required]
     });
   }
 
-  onSubmit(): void {
-    if (this.form.invalid) return;
-
-    const user: UserRegisterDTO = this.form.value;
-
-    this.userService.register(user).subscribe({
-      next: () => {
+  submit() {
+    if (this.registerForm.valid) {
+      console.log('Payload envoyé :', this.registerForm.value); // DEBUG
+      this.userService.register(this.registerForm.value).subscribe(() => {
         this.success = true;
-        this.router.navigate(['/login']);
-      },
-      error: () => {
-        this.error = 'Inscription échouée. Vérifie les champs ou réessaie plus tard.';
-      }
-    });
+        setTimeout(() => this.router.navigate(['/login']), 1500);
+      });
+    }
   }
 }

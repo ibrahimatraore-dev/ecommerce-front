@@ -1,24 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { CartService } from 'src/app/core/services/cart/cart.service';
+import { Component } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  standalone: false,
+  standalone:false,
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
-  cartCount = 0;
+export class NavbarComponent {
+  constructor(public auth: AuthService, private router: Router) {}
 
-  constructor(private cartService: CartService) {}
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
 
-  ngOnInit(): void {
-    // Met à jour depuis le BehaviorSubject
-    this.cartService.cartCount$.subscribe(count => {
-      this.cartCount = count;
-    });
-
-    // Force le recalcul (appel API)
-    this.cartService.refreshCartCount();
+  isAdmin(): boolean {
+    return this.auth.getCurrentUserEmail() === 'admin@admin.com';
   }
 }

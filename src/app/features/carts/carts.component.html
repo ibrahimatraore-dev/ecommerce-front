@@ -1,1 +1,17 @@
-<p>carts works!</p>
+<h2>Mon panier</h2>
+
+<div *ngIf="cartItems.length === 0">Votre panier est vide.</div>
+
+<div *ngFor="let item of cartItems" class="cart-item">
+  <p><strong>Produit ID : {{ item.productID }}</strong></p>
+
+  <p>Quantité :
+    <input type="number"
+       [value]="item.quantity"
+       min="1"
+       (change)="onQuantityChange($event, item.productID)" />   
+  </p>
+
+  <button (click)="remove(item.productID)">❌ Supprimer</button>
+  <hr />
+</div>

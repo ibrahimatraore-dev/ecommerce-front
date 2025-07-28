@@ -4,14 +4,19 @@ import { LoginComponent } from './features/auth/login/login.component';
 import { ProductsComponent } from './features/products/products.component';
 import { UsersComponent } from './features/users/users.component';
 import { HomeComponent } from './features/home/home.component';
+import { CartComponent } from './features/carts/carts.component';
+import { WishlistComponent } from './features/wishlist/wishlist.component';
+import { ContactComponent } from './features/contact/contact.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-    { path: 'register', component: UsersComponent },
-  { path: '', component: HomeComponent },  
+  { path: 'register', component: UsersComponent },
   { path: 'products', component: ProductsComponent },
-  { path: '', redirectTo: '/products', pathMatch: 'full' },
-  { path: '**', redirectTo: '/products' }
+  { path: 'cart', component: CartComponent },
+  { path: 'wishlist', component: WishlistComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

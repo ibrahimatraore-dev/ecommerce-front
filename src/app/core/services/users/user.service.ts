@@ -19,8 +19,10 @@ export class UserService {
   }
 
   register(user: UserUpdateDTO): Observable<UserDTO> {
-    return this.http.post<UserDTO>(`${this.baseUrl}/account`, user);
-  }
+  return this.http.post<UserDTO>(`${this.baseUrl}/account`, user, {
+    headers: { 'Content-Type': 'application/json' }
+  });
+}
 
   update(id: number, user: UserUpdateDTO): Observable<UserDTO> {
     return this.http.put<UserDTO>(`${this.baseUrl}/${id}`, user);
