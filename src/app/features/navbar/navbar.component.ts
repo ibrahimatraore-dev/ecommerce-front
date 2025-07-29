@@ -1,15 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/core/services/cart/cart.service';
 
 @Component({
   selector: 'app-navbar',
-  standalone:false,
+  standalone: false,
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
-  constructor(public auth: AuthService, private router: Router) {}
+export class NavbarComponent implements OnInit {
+  cartCount: number = 0;
+
+  constructor(
+    public auth: AuthService,
+    private router: Router,
+    private cartService: CartService
+  ) {}
+
+  ngOnInit(): void {
+    this.cartService.cartCount$.subscribe(count => {
+      this.cartCount = count;
+    });
+
+    this.cartService.refreshCartCount();
+  }
 
   logout() {
     this.auth.logout();

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-contact',
   standalone:false,
+  styleUrls: ['./contact.component.scss'],
   templateUrl: './contact.component.html'
 })
 export class ContactComponent {

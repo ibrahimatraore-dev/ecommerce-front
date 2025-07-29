@@ -1,14 +1,22 @@
-<div class="container">
+<div class="products">
   <h2>Produits</h2>
-  <input type="text" [(ngModel)]="keyword" placeholder="Rechercher..." (input)="search()"/>
+
+  <input
+    type="text"
+    [(ngModel)]="keyword"
+    placeholder="Rechercher..."
+    (input)="search()"
+  />
 
   <div class="product-list">
     <div *ngFor="let product of products" class="product-card">
       <img [src]="product.image" alt="{{ product.name }}" />
+
       <h3>{{ product.name }}</h3>
       <p>{{ product.description }}</p>
       <p>Prix : {{ product.price }} €</p>
       <p>Quantité dispo : {{ product.quantity }}</p>
+
       <button (click)="addToCart(product.id)">🛒 Ajouter au panier</button>
       <button (click)="addToWishlist(product.id)">💖 Wishlist</button>
     </div>

@@ -5,6 +5,7 @@ import { CartItemDTO } from 'src/app/core/models/carts/cart-item.model';
 @Component({
   selector: 'app-cart',
   standalone:false,
+    styleUrls: ['./carts.component.scss'],
   templateUrl: './carts.component.html'
 })
 export class CartComponent implements OnInit {

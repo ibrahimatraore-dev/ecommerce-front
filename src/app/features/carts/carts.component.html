@@ -1,17 +1,23 @@
-<h2>Mon panier</h2>
+<div class="cart">
+  <h2>Mon panier</h2>
 
-<div *ngIf="cartItems.length === 0">Votre panier est vide.</div>
+  <div *ngIf="cartItems.length === 0" class="empty">
+    Votre panier est vide.
+  </div>
 
-<div *ngFor="let item of cartItems" class="cart-item">
-  <p><strong>Produit ID : {{ item.productID }}</strong></p>
+  <div *ngFor="let item of cartItems" class="cart-item">
+    <p><strong>Produit ID : {{ item.productID }}</strong></p>
 
-  <p>Quantité :
-    <input type="number"
-       [value]="item.quantity"
-       min="1"
-       (change)="onQuantityChange($event, item.productID)" />   
-  </p>
+    <label>
+      Quantité :
+      <input
+        type="number"
+        [value]="item.quantity"
+        min="1"
+        (change)="onQuantityChange($event, item.productID)"
+      />
+    </label>
 
-  <button (click)="remove(item.productID)">❌ Supprimer</button>
-  <hr />
+    <button (click)="remove(item.productID)">❌ Supprimer</button>
+  </div>
 </div>

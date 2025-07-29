@@ -5,6 +5,7 @@ import { WishlistItemDTO } from 'src/app/core/models/wishlist/wishlist-item.mode
 @Component({
   selector: 'app-wishlist',
   standalone:false,
+  styleUrls: ['./wishlist.component.scss'],
   templateUrl: './wishlist.component.html'
 })
 export class WishlistComponent implements OnInit {

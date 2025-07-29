@@ -1,8 +1,37 @@
-<h2>Contact</h2>
-<form [formGroup]="contactForm" (ngSubmit)="submit()">
-  <input type="email" formControlName="email" placeholder="Votre email" />
-  <textarea formControlName="message" placeholder="Votre message (max 300 caractères)"></textarea>
-  <button type="submit" [disabled]="contactForm.invalid">Envoyer</button>
-</form>
+<div class="contact">
+  <h2>Contact</h2>
 
-<p *ngIf="success">Demande de contact envoyée avec succès.</p>
+  <form [formGroup]="contactForm" (ngSubmit)="submit()">
+    <div>
+      <label>Email</label>
+      <input
+        type="email"
+        formControlName="email"
+        placeholder="Votre email"
+      />
+      <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="text-red-500">
+        Email valide requis.
+      </div>
+    </div>
+
+    <div>
+      <label>Message</label>
+      <textarea
+        formControlName="message"
+        placeholder="Votre message (max 300 caractères)"
+        rows="4"
+      ></textarea>
+      <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched" class="text-red-500">
+        Message requis (max 300 caractères).
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="contactForm.invalid">
+      Envoyer
+    </button>
+  </form>
+
+  <p *ngIf="success" class="text-green-600">
+    ✅ Demande de contact envoyée avec succès.
+  </p>
+</div>

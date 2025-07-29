@@ -1,11 +1,31 @@
-<h2>Créer un compte</h2>
+<div class="register-container">
+  <h2>Créer un compte</h2>
 
-<form [formGroup]="registerForm" (ngSubmit)="submit()">
-  <input type="text" formControlName="lastName" placeholder="Nom de famille" />
-  <input type="text" formControlName="firstName" placeholder="Prénom" />
-  <input type="email" formControlName="emailAddress" placeholder="Email" />
-  <input type="password" formControlName="password" placeholder="Mot de passe" />
-  <button type="submit" [disabled]="registerForm.invalid">Créer le compte</button>
-</form>
+  <form [formGroup]="registerForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label>Nom de famille</label>
+      <input type="text" formControlName="lastName" placeholder="Nom de famille" />
+    </div>
 
-<p *ngIf="success"> Compte créé avec succès. Redirection...</p>
+    <div class="form-group">
+      <label>Prénom</label>
+      <input type="text" formControlName="firstName" placeholder="Prénom" />
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" formControlName="emailAddress" placeholder="Email" />
+    </div>
+
+    <div class="form-group">
+      <label>Mot de passe</label>
+      <input type="password" formControlName="password" placeholder="Mot de passe" />
+    </div>
+
+    <button type="submit" [disabled]="registerForm.invalid">Créer le compte</button>
+  </form>
+
+  <p *ngIf="success" class="success-message">
+    ✅ Compte créé avec succès. Redirection...
+  </p>
+</div>

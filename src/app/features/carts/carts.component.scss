@@ -1,0 +1,58 @@
+.cart {
+  margin-left: 260px;
+  padding: 2rem;
+  max-width: 600px;
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+
+  .empty {
+    font-style: italic;
+    color: #777;
+  }
+
+  .cart-item {
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+
+    p {
+      margin: 0.5rem 0;
+    }
+
+    label {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.5rem;
+
+      input {
+        margin-left: 0.5rem;
+        padding: 0.3rem;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        width: 80px;
+      }
+    }
+
+    button {
+      background-color: #e83e8c;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #c2185b;
+      }
+    }
+  }
+}

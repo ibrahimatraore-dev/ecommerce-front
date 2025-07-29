@@ -2,7 +2,12 @@
   <ul>
     <li><a routerLink="/">🏠 Accueil</a></li>
     <li><a routerLink="/products">🛍️ Produits</a></li>
-    <li><a routerLink="/cart">🛒 Panier</a></li>
+    <li>
+      <a routerLink="/cart">
+        🛒 Panier
+        <span *ngIf="cartCount > 0" class="cart-badge">{{ cartCount }}</span>
+      </a>
+    </li>
     <li><a routerLink="/wishlist">💖 Wishlist</a></li>
     <li><a routerLink="/contact">📨 Contact</a></li>
     <li *ngIf="isAdmin()"><a routerLink="/admin">⚙️ Admin (TODO)</a></li>
