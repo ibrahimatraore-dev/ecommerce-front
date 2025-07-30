@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth/auth.service';
+import { CartService } from 'src/app/core/services/cart/cart.service'; 
+
 @Component({
   selector: 'app-login',
   standalone: false,
@@ -15,6 +17,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private cartService: CartService,
     private router: Router
   ) {
     this.form = this.fb.group({
@@ -31,6 +34,7 @@ export class LoginComponent {
     this.authService.login(email, password).subscribe({
       next: (res) => {
         this.authService.setToken(res.token);
+        this.cartService.getCart().subscribe(); 
         this.router.navigate(['/products']);
       },
       error: () => {

@@ -1,3 +1,10 @@
+/**
+ * Service d'authentification front-end.
+ *
+ * - Permet de se connecter via l'API `/token`
+ * - Stocke le token JWT dans `localStorage`
+ * - Fournit des méthodes pour vérifier la connexion, récupérer l'utilisateur courant, se déconnecter
+ */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

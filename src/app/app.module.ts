@@ -16,6 +16,8 @@ import { WishlistComponent } from './features/wishlist/wishlist.component';
 import { NavbarComponent } from './features/navbar/navbar.component';
 import { HomeComponent } from './features/home/home.component';
 import { ContactComponent } from './features/contact/contact.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { ContactComponent } from './features/contact/contact.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AuthModule
+    AuthModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),

@@ -8,7 +8,7 @@
         <span *ngIf="cartCount > 0" class="cart-badge">{{ cartCount }}</span>
       </a>
     </li>
-    <li><a routerLink="/wishlist">💖 Wishlist</a></li>
+    <li><a routerLink="/wishlist">💖 Préference</a></li>
     <li><a routerLink="/contact">📨 Contact</a></li>
     <li *ngIf="isAdmin()"><a routerLink="/admin">⚙️ Admin (TODO)</a></li>
     <li *ngIf="auth.isLoggedIn(); else loginLink"><a (click)="logout()">🚪 Déconnexion</a></li>

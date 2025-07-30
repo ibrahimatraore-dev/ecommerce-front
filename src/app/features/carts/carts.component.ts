@@ -4,8 +4,8 @@ import { CartItemDTO } from 'src/app/core/models/carts/cart-item.model';
 
 @Component({
   selector: 'app-cart',
-  standalone:false,
-    styleUrls: ['./carts.component.scss'],
+  standalone: false,
+  styleUrls: ['./carts.component.scss'],
   templateUrl: './carts.component.html'
 })
 export class CartComponent implements OnInit {
@@ -14,20 +14,28 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.cartService.getCart().subscribe(data => this.cartItems = data);
+    this.loadCart();
   }
 
-  remove(productId: number) {
-    this.cartService.removeFromCart(productId).subscribe(() => this.ngOnInit());
+  loadCart(): void {
+    this.cartService.getCart().subscribe(data => {
+      this.cartItems = data;
+    });
   }
 
-  update(productId: number, quantity: number) {
-    this.cartService.updateQuantity(productId, quantity).subscribe(() => this.ngOnInit());
+  remove(productId: number): void {
+    this.cartService.removeFromCart(productId).subscribe(() => this.loadCart());
   }
+
+  update(productId: number, quantity: number): void {
+    this.cartService.updateQuantity(productId, quantity).subscribe(() => this.loadCart());
+  }
+
   onQuantityChange(event: Event, productId: number): void {
-  const input = event.target as HTMLInputElement;
-  const newQuantity = Number(input.value);
-  this.update(productId, newQuantity);
-}
-
+    const input = event.target as HTMLInputElement;
+    const newQuantity = Number(input.value);
+    if (newQuantity > 0) {
+      this.update(productId, newQuantity);
+    }
+  }
 }

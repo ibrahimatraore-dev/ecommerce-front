@@ -1,12 +1,21 @@
+/**
+ * Composant responsable de l'affichage des produits.
+ *
+ * - Affiche la liste paginée avec recherche
+ * - Permet d'ajouter un produit au panier ou à la wishlist
+ * - Utilise `ProductService`, `CartService`, `WishlistService`
+ * - Affiche un message de confirmation via `MatSnackBar`
+ */
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/core/services/products/product.service';
 import { CartService } from 'src/app/core/services/cart/cart.service';
 import { WishlistService } from 'src/app/core/services/wishlist/wishlist.service';
 import { Product } from 'src/app/core/models/products/product.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-products',
-  standalone:false,
+  standalone: false,
   styleUrls: ['./products.component.scss'],
   templateUrl: './products.component.html'
 })
@@ -20,7 +29,8 @@ export class ProductsComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private cartService: CartService,
-    private wishlistService: WishlistService
+    private wishlistService: WishlistService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -35,11 +45,16 @@ export class ProductsComponent implements OnInit {
   }
 
   addToCart(id: number) {
-    this.cartService.addToCart(id, 1).subscribe();
+    this.cartService.addToCart(id, 1).subscribe(() => {
+      this.cartService.getCart().subscribe(); // met à jour le badge
+      this.snackBar.open('Produit ajouté au panier', 'Fermer', { duration: 3000 });
+    });
   }
 
   addToWishlist(id: number) {
-    this.wishlistService.addToWishlist(id).subscribe();
+    this.wishlistService.addToWishlist(id).subscribe(() => {
+      this.snackBar.open('Ajouté à la wishlist', 'Fermer', { duration: 3000 });
+    });
   }
 
   search() {

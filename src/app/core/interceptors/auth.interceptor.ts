@@ -1,3 +1,11 @@
+/**
+ * Intercepteur HTTP ajoute automatiquement le token JWT
+ * dans les en-têtes des requêtes HTTP privées (authentifiées).
+ *
+ * - Il récupère le token depuis AuthService.
+ * - Il ajoute l'en-tête `Authorization: Bearer <token>` sauf pour certaines routes publiques.
+ * - Il permet de centraliser la logique d'authentification pour toutes les requêtes HTTP sortantes.
+ */
 import { Injectable } from '@angular/core';
 import {
   HttpInterceptor,

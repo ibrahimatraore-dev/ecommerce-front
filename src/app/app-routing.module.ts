@@ -7,14 +7,15 @@ import { HomeComponent } from './features/home/home.component';
 import { CartComponent } from './features/carts/carts.component';
 import { WishlistComponent } from './features/wishlist/wishlist.component';
 import { ContactComponent } from './features/contact/contact.component';
+import { AuthGuard } from './core/guards/auth.guard'; 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: UsersComponent },
   { path: 'products', component: ProductsComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'wishlist', component: WishlistComponent },
+  { path: 'cart', component: CartComponent, canActivate: [AuthGuard]},
+  { path: 'wishlist', component: WishlistComponent,canActivate: [AuthGuard] },
   { path: 'contact', component: ContactComponent },
   { path: '**', redirectTo: '' }
 ];

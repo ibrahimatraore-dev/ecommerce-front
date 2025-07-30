@@ -57,3 +57,9 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+##Strategy d'implementation
+La stratégie d’implémentation repose sur la séparation des responsabilités.
+J’ai isolé la logique métier dans des services, la logique d’affichage dans le composant, et les interactions UI dans le template.
+J’ai utilisé BehaviorSubject pour gérer les données réactives (comme le panier), et j’ai intégré un système de feedback utilisateur (MatSnackBar) pour une UX fluide.
+Tout est conçu pour être évolutif et maintenable.
